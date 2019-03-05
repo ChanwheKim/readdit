@@ -1,0 +1,132 @@
+.header {
+  box-shadow: 0 0 1.5rem 0.1rem rgba(0, 0, 0, 0.07);
+  color: #101d2c;
+
+  &-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 7rem;
+    font-size: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  &__company-name {
+    font-size: 3rem;
+    letter-spacing: .7px;
+    font-weight: 300;
+  }
+
+  &__user-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__search {
+    position: relative;
+  }
+
+  & .icon-search {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: rgba(#101d2c, .7);
+  }
+
+  & .input-keyword {
+    margin-right: 1rem;
+    background-color: rgba(#eee, .8);
+    border: none;
+    width: 20rem;
+    height: 3.8rem;
+    border-radius: .5rem;
+    padding-left: 3.5rem;
+    font-size: 1.5rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & .sign-in {
+    font-size: 1.5rem;
+    user-select: none;
+    cursor: pointer;
+    letter-spacing: .5px;
+    color: rgb(3, 168, 124);
+    font-weight: 300;
+    text-decoration: none;
+  }
+
+  & .icon-user {
+    font-size: 3rem;
+    color: rgba(#101d2c, .6);
+    transform: translateX(1px);
+    cursor: pointer;
+  }
+
+  &__admin-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__user-container {
+    position: relative;
+    display: block;
+  }
+
+  &__admin-modal:before {
+    display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+    content: '',;
+    position: absolute;
+    background-color: rgba(#fff, .8);
+    transform: rotate(45deg);
+    top: -.9rem;
+    right: .5rem;
+    border-left: 1px solid rgba(#101d2c, .2);
+    border-top: 1px solid rgba(#101d2c, .2);
+  }
+
+  &__admin-modal {
+    width: 15rem;
+    height: 7rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 3px;
+    right: .3rem;
+    bottom: -8rem;
+    z-index: 1000;
+    font-size: 1.6rem;
+    background-color: rgba(#fff, .8);
+    box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
+
+    & a,
+    a:link,
+    a:visited  {
+      height: 3.5rem;
+      width: 100%;
+      transition: all .1s;
+      padding: .5rem .5rem .5rem 1.5rem;
+      user-select: none;
+      cursor: pointer;
+      text-decoration: none;
+      color: #101d2c;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        box-shadow: 2px 2px 10px 0 rgba(46, 61, 73, 0.1);
+        transform: scale(1.01);
+      }
+    }
+  }
+}

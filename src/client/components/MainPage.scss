@@ -1,0 +1,45 @@
+.hero {
+  background: url('http://merryukulele.com/wps/wp-content/uploads/2019/03/main.jpg');
+  background-size: cover;
+  width: 103.2rem;
+  height: 30.9rem;
+  position: relative;
+
+  &__content {
+    height: 100%;
+    width: 36rem;
+    background-color: rgba(#ffffff, .4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    &--title-1,
+    &--title-2 {
+      transform: translateY(-1.5rem);
+      margin-left: 2.3rem;
+    }
+
+    &--title-1 {
+      color: #101d2c;
+      font-size: 3rem;
+      font-weight: 300;
+      display: inline-block;
+      width: 30rem;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+
+    &--title-2 {
+      color: #101d2c;
+      font-size: 1.7rem;
+      font-weight: 300;
+      display: inline-block;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.categories {
+  display: flex;
+}
