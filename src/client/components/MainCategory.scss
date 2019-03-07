@@ -4,6 +4,7 @@
   width: 103.2rem;
   height: 30.9rem;
   position: relative;
+  margin-bottom: 10rem;
 
   &__content {
     height: 100%;
@@ -42,4 +43,27 @@
 
 .categories {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 7rem;
+  margin-bottom: 5rem;
+
+  &__item {
+    width: 15rem;
+    height: 8.5rem;
+    margin-bottom: 4rem;
+    border-radius: 5px;
+    background: linear-gradient(to right bottom, rgba(#7ed56f, 1), rgba(#28b485, .8));
+    margin-right: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 300;
+    letter-spacing: .7px;
+    color: #ffffff;
+    cursor: pointer;
+  }
 }

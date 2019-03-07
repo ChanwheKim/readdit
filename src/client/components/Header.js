@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { IoIosSearch, IoMdContact } from 'react-icons/io';
 import './Header.scss';
 
 class Header extends Component {
@@ -18,6 +18,10 @@ class Header extends Component {
     this.showAdminModal = this.showAdminModal.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   handleChange(ev) {
     this.setState({ keyword: ev.target.value });
   }
@@ -29,8 +33,7 @@ class Header extends Component {
   }
 
   showAdminModal() {
-    console.log('hello');
-    this.setState((state) => ({ showModal: !state.showModal }));
+    this.setState(state => ({ showModal: !state.showModal }));
   }
 
   renderContent() {
@@ -44,9 +47,8 @@ class Header extends Component {
       default:
         return (
           <div className="header__user-container">
-            <a href="/api/logout"><li>Logout</li></a>
-            {/* <ion-icon name="contact" class="icon-user" onClick={this.showAdminModal}/> */}
-            {/* {
+            <IoMdContact className="icon-user" onClick={this.showAdminModal} />
+            {
               this.state.showModal && 
               (
                 <ul className="header__admin-modal">
@@ -54,7 +56,7 @@ class Header extends Component {
                   <a href="/api/logout"><li>Logout</li></a>
                 </ul>
               )
-            } */}
+            }
           </div>
         );
     }
@@ -67,7 +69,7 @@ class Header extends Component {
           <div className="header__company-name"></div>
           <div className="header__user-input">
             <div className="header__search">
-              <ion-icon name="search" class="icon-search" />
+              <IoIosSearch className="icon-search" />
               <input
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
@@ -83,8 +85,4 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
-}
-
-export default connect(mapStateToProps, null)(Header);
+export default Header;

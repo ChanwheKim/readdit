@@ -1,28 +1,18 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import Header from './Header';
+import HeaderContainer from '../containers/HeaderContainer';
 import Footer from './Footer';
-import MainPage from './MainPage';
+import LandingContainer from '../containers/LandingContainer';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
+const App = () => (
+  <Router>
+    <div>
+      <HeaderContainer />
+      <LandingContainer />
+      <Footer />
+    </div>
+  </Router>
+);
 
-  render() {
-    return (
-      <Router>
-        <div>
-          <Header />
-          <Route exact path="/" component={MainPage} />
-          <Footer />
-        </div>
-      </Router>
-    );
-  }
-}
-
-export default connect(null, actions)(App);
+export default App;

@@ -2,6 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
+const { GeneralServiceError } = require('../lib/error');
 
 const User = mongoose.model('users');
 
@@ -9,10 +10,14 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id).then((user) => { // 에러 핸들링 ( 케치 )
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+
     done(null, user);
-  });
+  } catch (err) {
+    done(new GeneralServiceError(), null);
+  }
 });
 
 passport.use(
@@ -23,15 +28,18 @@ passport.use(
       callbackURL: '/auth/google/callback',
     },
     async (accessToken, refreshToken, user, done) => {
-      const existingUser = await User.findOne({ googleId: user.id }); // 에러 핸들링
+      try {
+        const existingUser = await User.findOne({ googleId: user.id });
 
-      if (existingUser) {
-        done(null, existingUser);
-        return;
+        if (existingUser) {
+          return done(null, existingUser);
+        }
+
+        const newUser = await new User({ googleId: user.id }).save();
+        done(null, newUser);
+      } catch (err) {
+        done(new GeneralServiceError(), null);
       }
-
-      const newUser = await new User({ googleId: user.id }).save(); // 에러 핸들링
-      done(null, newUser);
     }
   )
 );

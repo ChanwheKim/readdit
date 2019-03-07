@@ -3,10 +3,6 @@ const passport = require('passport');
 module.exports = (app) => {
   app.get(
     '/auth/google',
-    (req, res, next) => {
-      console.log(22222);
-      next();
-    },
     passport.authenticate('google', {
       scope: ['profile', 'email']
     })
@@ -17,7 +13,6 @@ module.exports = (app) => {
     passport.authenticate('google'),
     (req, res) => {
       res.redirect('/');
-      // res.end();
     }
   );
 
@@ -27,10 +22,10 @@ module.exports = (app) => {
   });
 
   app.get('/api/current_user', (req, res) => {
-    res.send(req.user);
-  });
+    if (req.isAuthenticated()) {
+      return res.json(true);
+    }
 
-  app.get('/api/test', (req, res) => {
-    res.send('test');
+    res.json(false);
   });
 };
