@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { IoIosSearch, IoMdContact } from 'react-icons/io';
 import './Header.scss';
+import HeaderAdmin from './HeaderAdmin';
 
 class Header extends Component {
   constructor(props) {
@@ -49,13 +50,11 @@ class Header extends Component {
           <div className="header__user-container">
             <IoMdContact className="icon-user" onClick={this.showAdminModal} />
             {
-              this.state.showModal && 
-              (
-                <ul className="header__admin-modal">
-                  <a href="#">My Account</a>
-                  <a href="/api/logout"><li>Logout</li></a>
-                </ul>
-              )
+              this.state.showModal &&
+              <HeaderAdmin
+                onClick={this.showAdminModal}
+                onBackgroundClick={this.showAdminModal}
+              />
             }
           </div>
         );

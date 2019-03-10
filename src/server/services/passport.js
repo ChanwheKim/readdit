@@ -35,7 +35,16 @@ passport.use(
           return done(null, existingUser);
         }
 
-        const newUser = await new User({ googleId: user.id }).save();
+        const newUser = await new User({
+          googleId: user.id,
+          displayName: user.displayName,
+          articleIds: [],
+          likes: [],
+          emails: user.emails,
+          name: user.name,
+          image: user._json.image.url,
+        }).save();
+
         done(null, newUser);
       } catch (err) {
         done(new GeneralServiceError(), null);

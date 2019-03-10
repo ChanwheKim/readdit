@@ -12,6 +12,8 @@ const app = express();
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieSession({
   maxAge: 30 * 24 * 60 * 60 * 1000,
   keys: [keys.cookieKey],
@@ -30,7 +32,7 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
+  res.status(err.state || 500);
 
   res.render('error', { message: err.message });
 });

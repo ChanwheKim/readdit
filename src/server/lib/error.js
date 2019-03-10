@@ -25,7 +25,7 @@ class GeneralServiceError extends Error {
 class NotAuthenticatedError extends Error {
   constructor() {
     super();
-    this.message = '';
+    this.message = 'Oops! Coult you please sign in first?';
     this.state = 401;
   }
 }

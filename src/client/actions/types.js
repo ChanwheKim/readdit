@@ -1,2 +1,8 @@
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_CATEGORIES = 'GET_CATEGORIES';
+
+export const IS_POSTING = 'IS_POSTING';
+export const RECEIVE_NEW_ARTICLE = 'RECEIVE_NEW_ARTICLE';
+
+export const DISPLAY_MODAL = 'DISPLAY_MODAL';
+export const REMOVE_MODAL = 'REMOVE_MODAL';

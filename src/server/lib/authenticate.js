@@ -1,10 +1,10 @@
-const { NotAuthenticatedERror } = require('./error');
+const { NotAuthenticatedError } = require('./error');
 
 function authenticate(req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
-    next(new NotAuthenticatedERror());
+    next(new NotAuthenticatedError());
   }
 }
 

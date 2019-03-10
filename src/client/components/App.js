@@ -1,15 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import HeaderContainer from '../containers/HeaderContainer';
-import Footer from './Footer';
 import LandingContainer from '../containers/LandingContainer';
+import NewArticleContainer from '../containers/NewArticleContainer';
+import Footer from './Footer';
 
 const App = () => (
   <Router>
     <div>
       <HeaderContainer />
-      <LandingContainer />
+      <Route exact path="/" component={LandingContainer} />
+      <Route path="/new-article" component={NewArticleContainer} />
       <Footer />
     </div>
   </Router>

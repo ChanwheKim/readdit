@@ -89,13 +89,13 @@
     transform: rotate(45deg);
     top: -.9rem;
     right: .5rem;
-    border-left: 1px solid rgba(#101d2c, .2);
-    border-top: 1px solid rgba(#101d2c, .2);
+    border-left: 1px solid rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0,0,0,.1);
+    z-index: -1;
   }
 
   &__admin-modal {
-    width: 15rem;
-    height: 7rem;
+    width: 22rem;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -103,23 +103,23 @@
     align-items: flex-start;
     border-radius: 3px;
     right: .3rem;
-    bottom: -8rem;
+    bottom: -18rem;
     z-index: 1000;
     font-size: 1.6rem;
     background-color: rgba(#fff, .8);
-    box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
 
     & a,
     a:link,
     a:visited  {
-      height: 3.5rem;
+      height: 5.5rem;
       width: 100%;
       transition: all .1s;
-      padding: .5rem .5rem .5rem 1.5rem;
+      padding: 1rem 2rem;
       user-select: none;
       cursor: pointer;
       text-decoration: none;
-      color: #101d2c;
+      color: rgba(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
 
