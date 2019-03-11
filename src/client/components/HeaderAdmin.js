@@ -28,6 +28,7 @@ class HeaderAdmin extends Component {
   render() {
     return (
       <ul className="header__admin-modal" onClick={this.props.onClick}>
+        <a href="/">Home</a>
         <Link to="/admin">My account</Link>
         <Link to="/new-article">New article</Link>
         <a href="/api/logout">Sign out</a>

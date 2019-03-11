@@ -23,7 +23,7 @@ module.exports = (app) => {
 
   app.get('/api/current_user', (req, res) => {
     if (req.isAuthenticated()) {
-      return res.json(true);
+      return res.json(req.user);
     }
 
     res.json(false);

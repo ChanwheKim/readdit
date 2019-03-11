@@ -6,6 +6,10 @@ import {
   RECEIVE_NEW_ARTICLE,
   DISPLAY_MODAL,
   REMOVE_MODAL,
+  FETCH_ARTICLES_BY_CATEGORY,
+  RESET_ARTICLES_STATE,
+  LOADING_ARTICLES,
+  HANDLE_LIKE,
 } from './types';
 
 export const fetchUser = () => async (dispatch) => {
@@ -35,7 +39,47 @@ export const displayModal = message => ({
   payload: message,
 });
 
-export const removeMmodal = () => ({
+export const removeModal = () => ({
   type: REMOVE_MODAL,
   payload: '',
 });
+
+export const fetchArticlesByCategory = categoryId => async (dispatch) => {
+  dispatch({ type: LOADING_ARTICLES, payload: true });
+
+  const res = await axios.get(`/api/categories/${categoryId}/articles`);
+
+  dispatch({ type: FETCH_ARTICLES_BY_CATEGORY, payload: res.data });
+};
+
+export const resetArticlesState = () => (dispatch) => {
+  dispatch({
+    type: RESET_ARTICLES_STATE,
+    payload: {
+      isLoading: false,
+      articles: [],
+    }
+  });
+};
+
+export const handleLikeClick = (user, article) => async (dispatch) => {
+  const likedBefore = user.like.some((id) => {
+    for (let i = 0; i < article.like.length; i++) {
+      return id === article.like[i];
+    }
+  });
+
+  const method = likedBefore ? 'delete' : 'post';
+  let res;
+
+  try {
+    res = await axios({
+      method,
+      url: `/api/users/${user._id}/articles/${article._id}/like`
+    });
+  } catch (err) {
+    return dispatch(displayModal(err.message));
+  }
+
+  dispatch({ type: HANDLE_LIKE, payload: res.data });
+};

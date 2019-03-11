@@ -27,7 +27,7 @@ class NewArticle extends Component {
   }
 
   componentWillUnmount() {
-    this.props.onUnmount();
+    // this.props.onUnmount();
   }
 
   clearInput() {
@@ -43,13 +43,11 @@ class NewArticle extends Component {
 
   handleKeyDown(ev) {
     if (ev.keyCode === 13) {
-      console.log('endter pressed');
       this.handleSubmit();
     }
   }
 
   handleBtnClick() {
-    console.log('btn clicked');
     this.handleSubmit();
   }
 

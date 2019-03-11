@@ -9,7 +9,7 @@ const articleSchema = new Schema({
   image: String,
   description: String,
   keywords: [String],
-  like: Number,
+  like: [mongoose.Schema.Types.ObjectId],
   author: String,
   categoryId: [mongoose.Schema.Types.ObjectId],
 }, { timestamps: true });

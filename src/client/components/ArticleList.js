@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
-import { FaHashtag, FaSeedling } from "react-icons/fa";
+import { FaHashtag, FaSeedling } from 'react-icons/fa';
 import './ArticleList.scss';
 
 class ArticleList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(ev) {
+    const articleId = ev.currentTarget.dataset.id;
+    const { user, article, onLikeClick } = this.props;
+
+    if (!articleId || !user) {
+      return;
+    }
+
+    onLikeClick(user, article);
+  }
+
   renderKeywords() {
     const { keywords } = this.props.article;
 
-    return keywords.map((keyword, idx) => (
-      <li className="keyword" key={keyword + idx}>
-        <FaHashtag size={10} className="icon-keywords" />
-        {keyword}
-      </li>
-    ));
+    return keywords.map((keyword) => {
+      const key = keyword + Math.random();
+
+      return (
+        <li className="keyword" key={key}>
+          <FaHashtag size={10} className="icon-keywords" />
+          {keyword}
+        </li>
+      );
+    });
   }
 
   render() {
@@ -19,45 +40,43 @@ class ArticleList extends Component {
     const defaultImg = 'http://merryukulele.com/wps/wp-content/uploads/2019/03/main.jpg';
 
     return (
-      <a href={article.url} target="_blank">
-        <div className="article list">
-          <div className="article list__info">
-            <div className="article list__info--details">
-              <h1>{article.title}</h1>
-              {
-                article.description &&
-                <span className="description">{article.description}</span>
-              }
-              {
-                article.author &&
-                <span className="author">by {article.author}</span>
-              }
-              {
-                !!article.keywords.length &&
-                <ul className="keywords-container">
-                  {this.renderKeywords()}
-                </ul>
-              }
-            </div>
-            <div className="article list__info--url">{article.url}</div>
+      <div className="article list">
+        <div className="article list__info">
+          <div className="article list__info--details">
+            <a href={article.url} target="_blank"><h1>{article.title}</h1></a>
+            {
+              article.description &&
+              <span className="description">{article.description}</span>
+            }
+            {
+              article.author &&
+              <span className="author">by {article.author}</span>
+            }
+            {
+              !!article.keywords.length &&
+              <ul className="keywords-container">
+                {this.renderKeywords()}
+              </ul>
+            }
           </div>
-          <img
-            className="article list__image"
-            src={article.image ? article.image : defaultImg}
-            alt={article.title}
-          />
-          <div className="article-like">
-            <FaSeedling size={20} className="icon-like" />
-            <span className="like-count">
-              {
-                article.like === 0 || article.like === 1
-                  ? article.like + ' seed'
-                  : article.like + ' seeds'
-              }
-            </span>
-          </div>
+          <div className="article list__info--url">{article.url}</div>
         </div>
-      </a>
+        <img
+          className="article list__image"
+          src={article.image ? article.image : defaultImg}
+          alt={article.title}
+        />
+        <div className="article-like" data-id={article._id} onClick={this.handleClick}>
+          <FaSeedling size={20} className="icon-like" />
+          <span className="like-count">
+            {
+              article.like.length === 0 || article.like.length === 1
+                ? article.like.length + ' seed'
+                : article.like.length + ' seeds'
+            }
+          </span>
+        </div>
+      </div>
     );
   }
 }

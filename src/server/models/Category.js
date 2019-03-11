@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const categorySchema = new Schema({
   name: { type: String, required: true },
-  articleIds: [mongoose.Schema.Types.ObjectId],
+  articleIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'article' }],
   count: { type: Number, required: true },
 });
 

@@ -10,7 +10,7 @@ const App = () => (
   <Router>
     <div>
       <HeaderContainer />
-      <Route exact path="/" component={LandingContainer} />
+      <Route path="/" component={LandingContainer} />
       <Route path="/new-article" component={NewArticleContainer} />
       <Footer />
     </div>

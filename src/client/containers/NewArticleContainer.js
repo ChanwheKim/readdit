@@ -5,7 +5,7 @@ import {
   didPostRequest,
   receiveNewArticle,
   displayModal,
-  removeMmodal,
+  removeModal,
   resetNewArticleState,
 } from '../actions/index';
 
@@ -41,10 +41,17 @@ const mapDispatchToProps = dispatch => ({
     dispatch(displayModal(message));
   },
   onModalClick: () => {
-    dispatch(removeMmodal());
+    dispatch(removeModal());
   },
   onUnmount: () => {
     dispatch(resetNewArticleState());
+  },
+  onBtnLikeClicked: async (userId, articleId) => {
+    const response = await axios.post(`/api/users/${userId}/articles/${articleId}`);
+
+    if (response.data.message) {
+      return dispatch(displayModal(response.data.message));
+    }
   }
 });
 
