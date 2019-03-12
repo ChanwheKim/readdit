@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { IoIosSearch, IoMdContact } from 'react-icons/io';
 import './Header.scss';
+import PropTypes from 'prop-types';
 import HeaderAdmin from './HeaderAdmin';
 
 class Header extends Component {
@@ -85,3 +86,8 @@ class Header extends Component {
 }
 
 export default Header;
+
+Header.propTypes = {
+  auth: PropTypes.object,
+  fetchUser: PropTypes.func,
+};

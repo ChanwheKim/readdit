@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import './NewArticle.scss';
+import './PostArticleSection.scss';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { FaSpinner } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import Selection from './Selection';
-import ArticleList from './ArticleList';
+import ArticleList from './ArticleItem';
 import Modal from './Modal';
 
-class NewArticle extends Component {
+class PostArticleSection extends Component {
   constructor(props) {
     super(props);
 
@@ -155,4 +156,12 @@ class NewArticle extends Component {
   }
 }
 
-export default NewArticle;
+export default PostArticleSection;
+
+PostArticleSection.propTypes = {
+  categories: PropTypes.array,
+  newArticle: PropTypes.object,
+  onSubmit: PropTypes.func,
+  modal: PropTypes.object,
+  onModalClick: PropTypes.func,
+};

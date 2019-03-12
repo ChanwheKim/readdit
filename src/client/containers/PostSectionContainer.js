@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
 import axios from 'axios';
-import NewArticle from '../components/NewArticle';
+import PostArticleSection from '../components/PostArticleSection';
 import {
   didPostRequest,
   receiveNewArticle,
   displayModal,
   removeModal,
-  resetNewArticleState,
 } from '../actions/index';
 
 const mapStateToProps = (state) => {
@@ -58,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NewArticle);
+)(PostArticleSection);

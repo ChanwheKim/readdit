@@ -10,6 +10,7 @@ import {
   RESET_ARTICLES_STATE,
   LOADING_ARTICLES,
   HANDLE_LIKE,
+  RECEIVE_USER_POSTS,
 } from './types';
 
 export const fetchUser = () => async (dispatch) => {
@@ -62,7 +63,8 @@ export const resetArticlesState = () => (dispatch) => {
   });
 };
 
-export const handleLikeClick = (user, article) => async (dispatch) => {
+export const handleLikeClick = article => async (dispatch, getState) => {
+  const user = getState().auth;
   const likedBefore = user.like.some((id) => {
     for (let i = 0; i < article.like.length; i++) {
       return id === article.like[i];
@@ -75,7 +77,7 @@ export const handleLikeClick = (user, article) => async (dispatch) => {
   try {
     res = await axios({
       method,
-      url: `/api/users/${user._id}/articles/${article._id}/like`
+      url: `/api/users/${user._id}/articles/${article._id}/like`,
     });
   } catch (err) {
     return dispatch(displayModal(err.message));
@@ -83,3 +85,8 @@ export const handleLikeClick = (user, article) => async (dispatch) => {
 
   dispatch({ type: HANDLE_LIKE, payload: res.data });
 };
+
+export const receiveUserPosts = articles => ({
+  type: RECEIVE_USER_POSTS,
+  payload: articles,
+});

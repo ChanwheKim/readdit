@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   isLoading: false,
-  articles: [],
+  list: [],
 };
 
 export default function articlesReducer(state = initialState, action) {
@@ -20,7 +20,7 @@ export default function articlesReducer(state = initialState, action) {
     case FETCH_ARTICLES_BY_CATEGORY:
       return {
         isLoading: false,
-        articles: action.payload,
+        list: action.payload,
       };
     case RESET_ARTICLES_STATE:
       return action.payload;

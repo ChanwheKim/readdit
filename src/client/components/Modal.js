@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Modal.scss';
 import { IoMdCheckmark } from 'react-icons/io';
+import PropTypes from 'prop-types';
 
 class Modal extends Component {
   constructor(props) {
@@ -43,3 +44,8 @@ class Modal extends Component {
 }
 
 export default Modal;
+
+Modal.propTypes = {
+  message: PropTypes.string,
+  onClick: PropTypes.func,
+};

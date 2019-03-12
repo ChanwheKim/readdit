@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Route, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class HeaderAdmin extends Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class HeaderAdmin extends Component {
   render() {
     return (
       <ul className="header__admin-modal" onClick={this.props.onClick}>
-        <a href="/">Home</a>
-        <Link to="/admin">My account</Link>
+        <Link to="/">Home</Link>
+        <Link to="/user-account">My account</Link>
         <Link to="/new-article">New article</Link>
         <a href="/api/logout">Sign out</a>
       </ul>
@@ -38,3 +39,7 @@ class HeaderAdmin extends Component {
 }
 
 export default HeaderAdmin;
+
+HeaderAdmin.propTypes = {
+  onBackgroundClick: PropTypes.func,
+};

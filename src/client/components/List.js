@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './List.scss';
 import { FaSpinner } from 'react-icons/fa';
-import ArticleList from './ArticleList';
+import PropTypes from 'prop-types';
+import ArticleItem from './ArticleItem';
 import Modal from './Modal';
 
 class List extends Component {
@@ -16,20 +17,19 @@ class List extends Component {
   }
 
   renderArticleItem() {
-    const { articles } = this.props.articles;
+    const { list } = this.props.articles;
 
-    return articles.map(article => (
-      <ArticleList
+    return list.map(article => (
+      <ArticleItem
         article={article}
         onLikeClick={this.props.onLikeClick}
-        user={this.props.user}
         key={article._id}
       />
     ));
   }
 
   render() {
-    const { isLoading, articles } = this.props.articles;
+    const { isLoading, list } = this.props.articles;
 
     if (isLoading) {
       return (
@@ -41,10 +41,10 @@ class List extends Component {
       );
     }
 
-    if (!articles.length) {
+    if (!list.length) {
       return (
         <div className="list-wrapper row">
-          <div>데이터 없을 때 처리 필요</div>
+          <div>There is no lists in this category.</div>
         </div>
       );
     }
@@ -64,3 +64,11 @@ class List extends Component {
 }
 
 export default List;
+
+List.propTypes = {
+  onUnmount: PropTypes.func,
+  onLikeClick: PropTypes.func,
+  modal: PropTypes.object,
+  onModalClick: PropTypes.func,
+  articles: PropTypes.object,
+};

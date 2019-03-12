@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { FaHashtag, FaSeedling } from 'react-icons/fa';
-import './ArticleList.scss';
+import './ArticleItem.scss';
+import PropTypes from 'prop-types';
 
-class ArticleList extends Component {
+class ArticleItem extends Component {
   constructor(props) {
     super(props);
 
@@ -11,13 +12,13 @@ class ArticleList extends Component {
 
   handleClick(ev) {
     const articleId = ev.currentTarget.dataset.id;
-    const { user, article, onLikeClick } = this.props;
+    const { article, onLikeClick } = this.props;
 
-    if (!articleId || !user) {
+    if (!articleId || !article) {
       return;
     }
 
-    onLikeClick(user, article);
+    onLikeClick(article);
   }
 
   renderKeywords() {
@@ -81,4 +82,9 @@ class ArticleList extends Component {
   }
 }
 
-export default ArticleList;
+export default ArticleItem;
+
+ArticleItem.propTypes = {
+  article: PropTypes.object,
+  onLikeClick: PropTypes.func,
+};

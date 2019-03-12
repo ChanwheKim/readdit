@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import List from './List';
 import './MainCategory.scss';
-import PropTypes from 'prop-types';
 
 class MainCategory extends Component {
   constructor() {
@@ -41,7 +41,6 @@ class MainCategory extends Component {
           articles={this.props.articles}
           onUnmount={this.props.resetArticlesState}
           onLikeClick={this.props.handleLikeClick}
-          user={this.props.user}
           modal={this.props.modal}
           onModalClick={this.props.removeModal}
         />
@@ -79,7 +78,6 @@ MainCategory.propTypes = {
   fetchArticlesByCategory: PropTypes.func,
   resetArticlesState: PropTypes.func,
   handleLikeClick: PropTypes.func,
-  user: PropTypes.object,
   modal: PropTypes.object,
   removeModal: PropTypes.func,
 };

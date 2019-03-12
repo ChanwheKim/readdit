@@ -93,14 +93,14 @@ router.post('/articles/new', authenticate, async (req, res, next) => {
       || $('meta[property="author"]')[0]
       || defaultObj;
 
-    title = $('title').text()
+    title = $('title').first().text()
       || _.result(metaTitle.attribs, 'content', '')
       || _.result(jsonLD, 'headline', '')
       || 'No title';
 
     image = _.result(metaImage.attribs, 'content', '')
       || (jsonLD && _.result(jsonLD.image, 'url', ''))
-      || _.result($('img')[0].attribs, 'src', '')
+      || ($('img')[0] && _.result($('img')[0].attribs, 'src', ''))
       || '';
 
     keywords = trimKeywords(_.result(keywords.attribs, 'content', '').split(' '));
@@ -205,7 +205,6 @@ router.post('/users/:user_id/articles/:article_id/like', authenticate, async (re
   });
 });
 
-
 router.delete('/users/:user_id/articles/:article_id/like', authenticate, async (req, res, next) => {
   if (!req.params.user_id === req.user.id) {
     return next(new WrongEntityError());
@@ -264,13 +263,31 @@ router.get('/categories/:category_id/articles', async (req, res, next) => {
     return next(new WrongEntityError());
   }
 
-  Promise.all(
-    category.articleIds.map(articleId => Article.findById(articleId))
-  ).then((articles) => {
+  try {
+    const articles = await Promise.all(
+      category.articleIds.map(articleId => Article.findById(articleId))
+    );
+
     res.json(articles);
-  }).catch((err) => {
+  } catch (err) {
     next(new GeneralServiceError());
-  });
+  }
+});
+
+router.get('/users/:user_id/articles', async (req, res, next) => {
+  if (!req.params.user_id === req.user.id) {
+    return next(new WrongEntityError());
+  }
+
+  try {
+    const articles = await Promise.all(
+      req.user.articleIds.map(id => Article.findById(id))
+    );
+
+    res.json(articles);
+  } catch (err) {
+    next(new GeneralServiceError());
+  }
 });
 
 module.exports = router;

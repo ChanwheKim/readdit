@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Selection.scss';
+import PropTypes from 'prop-types';
 
 class Selection extends Component {
   constructor(props) {
@@ -41,3 +42,9 @@ class Selection extends Component {
 }
 
 export default Selection;
+
+Selection.propTypes = {
+  onClick: PropTypes.func,
+  list: PropTypes.array,
+  onBackgroundClick: PropTypes.func,
+};
