@@ -6,6 +6,8 @@ import {
   receiveNewArticle,
   displayModal,
   removeModal,
+  resetNewArticle,
+  fetchCategories,
 } from '../actions/index';
 
 const mapStateToProps = (state) => {
@@ -35,16 +37,21 @@ const mapDispatchToProps = dispatch => ({
     }
 
     dispatch(receiveNewArticle(response.data));
+    dispatch(fetchCategories());
   },
+
   onNotEnoughInfo: (message) => {
     dispatch(displayModal(message));
   },
+
   onModalClick: () => {
     dispatch(removeModal());
   },
+
   onUnmount: () => {
-    dispatch(resetNewArticleState());
+    dispatch(resetNewArticle());
   },
+
   onBtnLikeClicked: async (userId, articleId) => {
     const response = await axios.post(`/api/users/${userId}/articles/${articleId}`);
 

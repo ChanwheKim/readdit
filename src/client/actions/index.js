@@ -4,10 +4,10 @@ import {
   FETCH_CATEGORIES,
   IS_POSTING,
   RECEIVE_NEW_ARTICLE,
+  RESET_NEW_ARTICLE,
   DISPLAY_MODAL,
   REMOVE_MODAL,
   FETCH_ARTICLES_BY_CATEGORY,
-  RESET_ARTICLES_STATE,
   LOADING_ARTICLES,
   HANDLE_LIKE,
   RECEIVE_USER_POSTS,
@@ -35,6 +35,11 @@ export const receiveNewArticle = newArticle => ({
   payload: newArticle,
 });
 
+export const resetNewArticle = () => ({
+  type: RESET_NEW_ARTICLE,
+  payload: {},
+});
+
 export const displayModal = message => ({
   type: DISPLAY_MODAL,
   payload: message,
@@ -46,25 +51,22 @@ export const removeModal = () => ({
 });
 
 export const fetchArticlesByCategory = categoryId => async (dispatch) => {
+  let res;
+
   dispatch({ type: LOADING_ARTICLES, payload: true });
 
-  const res = await axios.get(`/api/categories/${categoryId}/articles`);
+  res = await axios.get(`/api/categories/${categoryId}/articles`);
 
   dispatch({ type: FETCH_ARTICLES_BY_CATEGORY, payload: res.data });
 };
 
-export const resetArticlesState = () => (dispatch) => {
-  dispatch({
-    type: RESET_ARTICLES_STATE,
-    payload: {
-      isLoading: false,
-      articles: [],
-    }
-  });
-};
-
 export const handleLikeClick = article => async (dispatch, getState) => {
   const user = getState().auth;
+
+  if (!user) {
+    return dispatch(displayModal('Please sign in first.'));
+  }
+
   const likedBefore = user.like.some((id) => {
     for (let i = 0; i < article.like.length; i++) {
       return id === article.like[i];

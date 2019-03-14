@@ -1,9 +1,13 @@
 .user-posts {
   display: flex;
+  min-height: 54rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 10rem;
+  position: relative;
+  z-index: 100;
+  padding-left: 3rem;
 
   &__list {
     height: 17rem;
@@ -14,6 +18,7 @@
     align-items: flex-start;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 1.5rem;
+    margin-left: 4rem;
 
     &--title {
       font-size: 2rem;
@@ -44,8 +49,124 @@
       margin-bottom: 2rem;
     }
   }
+
+  &__side-bar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20rem;
+    height: 57rem;
+    top: 13rem;
+    left: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+    & a {
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.84);
+
+      &:active,
+      &:visited {
+        color: rgba(0, 0, 0, 0.84);
+      }
+    }
+
+    & .link-active {
+      background-color: rgba(0, 0, 0, .02);
+    }
+  }
 }
 
 a {
   text-decoration: none;
+}
+
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+
+  & .bar-chart-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    & .bar-chart {
+      margin-right: 4rem;
+
+      &__title {
+        font-size: 2rem;
+        color: rgba(0, 0, 0, 0.84);
+        font-weight: 300;
+        padding-left: 6.3rem;
+      }
+    }
+
+    &__list-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 27rem;
+      transform: translatey(-5rem);
+
+      & h1 {
+        width: 100%;
+        font-size: 2rem;
+        text-align: left;
+        color: rgba(0, 0, 0, 0.84);
+        margin-bottom: 2rem;
+        font-weight: 300;
+        margin-left: .5rem;
+      }
+    }
+  }
+
+  & .keyword-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 32rem;
+    overflow: scroll;
+    border: 1px solid rgba(0,0,0,.1);
+
+    &__item {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      display: block;
+      padding-left: 2rem;
+    }
+  }
+
+  & .bubble-chart-title {
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    color: rgba(0, 0, 0, 0.84);
+    font-size: 2rem;
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+}
+
+text {
+  user-select: none;
+
+  &:hover {
+    fill: rgb(3, 168, 124) !important;
+  }
 }

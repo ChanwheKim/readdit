@@ -14,7 +14,7 @@ class ArticleItem extends Component {
     const articleId = ev.currentTarget.dataset.id;
     const { article, onLikeClick } = this.props;
 
-    if (!articleId || !article) {
+    if (!articleId || !article || !onLikeClick) {
       return;
     }
 

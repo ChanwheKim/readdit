@@ -28,7 +28,7 @@ class PostArticleSection extends Component {
   }
 
   componentWillUnmount() {
-    // this.props.onUnmount();
+    this.props.onUnmount();
   }
 
   clearInput() {
@@ -164,4 +164,5 @@ PostArticleSection.propTypes = {
   onSubmit: PropTypes.func,
   modal: PropTypes.object,
   onModalClick: PropTypes.func,
+  onUnmount: PropTypes.func,
 };

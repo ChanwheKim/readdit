@@ -2,6 +2,7 @@ import {
   IS_POSTING,
   RECEIVE_NEW_ARTICLE,
   REMOVE_MODAL,
+  RESET_NEW_ARTICLE,
 } from '../actions/types';
 
 const initialState = {
@@ -25,6 +26,11 @@ export default function newArticleReducer(state = initialState, action) {
       return {
         ...state,
         isPosting: false,
+      };
+    case RESET_NEW_ARTICLE:
+      return {
+        isPosting: false,
+        article: action.payload,
       };
     default:
       return state;

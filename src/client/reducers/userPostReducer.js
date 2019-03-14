@@ -5,7 +5,7 @@ import {
 export default function userPostReducer(state = [], action) {
   switch (action.type) {
     case RECEIVE_USER_POSTS:
-      return action.payload;
+      return action.payload.map(article => article._id);
     default:
       return state;
   }

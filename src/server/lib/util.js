@@ -2,7 +2,7 @@ const trimKeywords = (keywords) => {
   const newKeywords = [];
 
   keywords.forEach((word) => {
-    let trimmedWord = word.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    let trimmedWord = word.replace(/[^a-zA-Z0-9\u3131-\uD79D]/g, '').toLowerCase();
 
     if (trimmedWord[0]) {
       trimmedWord = trimmedWord[0].toUpperCase() + trimmedWord.slice(1);

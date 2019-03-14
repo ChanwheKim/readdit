@@ -12,10 +12,6 @@ class List extends Component {
     this.renderArticleItem = this.renderArticleItem.bind(this);
   }
 
-  componentWillUnmount() {
-    this.props.onUnmount();
-  }
-
   renderArticleItem() {
     const { list } = this.props.articles;
 

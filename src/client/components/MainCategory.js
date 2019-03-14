@@ -8,6 +8,10 @@ class MainCategory extends Component {
   constructor() {
     super();
 
+    this.state = {
+      curCategoryId: '',
+    };
+
     this.renderCategories = this.renderCategories.bind(this);
     this.handleCategoryClicked = this.handleCategoryClicked.bind(this);
   }
@@ -30,16 +34,25 @@ class MainCategory extends Component {
     const { id } = ev.target.dataset;
 
     if (id) {
+      this.setState({ curCategoryId: id });
       this.props.fetchArticlesByCategory(id);
     }
   }
 
   render() {
     if (this.props.location.pathname === '/articles') {
+      const { categories, articles } = this.props;
+      const { curCategoryId } = this.state;
+
+      const curCategory = categories.find(category => category._id === curCategoryId);
+      const list = {
+        ...articles,
+        list: curCategory.articleIds.map(id => articles.list[id]),
+      };
+
       return (
         <List
-          articles={this.props.articles}
-          onUnmount={this.props.resetArticlesState}
+          articles={list}
           onLikeClick={this.props.handleLikeClick}
           modal={this.props.modal}
           onModalClick={this.props.removeModal}
@@ -76,7 +89,6 @@ MainCategory.propTypes = {
   fetchCategories: PropTypes.func,
   categories: PropTypes.array,
   fetchArticlesByCategory: PropTypes.func,
-  resetArticlesState: PropTypes.func,
   handleLikeClick: PropTypes.func,
   modal: PropTypes.object,
   removeModal: PropTypes.func,
