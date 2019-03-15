@@ -7,13 +7,14 @@ const keys = require('../config/keys');
 const Category = require('../models/Category');
 const { GeneralServiceError, WrongEntityError, NotAuthenticatedError } = require('../lib/error');
 const { authenticate } = require('../lib/authenticate');
-const { filterJasonLdKeywords, trimKeywords } = require('../lib/util');
+const { filterJasonLdKeywords, trimKeywords, filterTags } = require('../lib/util');
 const Article = require('../models/Article');
 const Like = require('../models/Like');
 
 const router = express.Router();
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
 
@@ -105,6 +106,10 @@ router.post('/articles/new', authenticate, async (req, res, next) => {
 
     keywords = trimKeywords(_.result(keywords.attribs, 'content', '').split(' '));
 
+    const tags = filterTags($('meta[property="article:tag"]'));
+
+    keywords = keywords.concat(tags);
+    
     description = _.result(metaDiscription.attribs, 'content', '')
       || (jsonLD && jsonLD.description)
       || '';
@@ -143,6 +148,7 @@ router.post('/articles/new', authenticate, async (req, res, next) => {
   } catch (err) {
     res.json(new GeneralServiceError());
   }
+  res.json('testing..');
 });
 
 router.post('/users/:user_id/articles/:article_id/like', authenticate, async (req, res, next) => {

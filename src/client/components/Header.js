@@ -66,7 +66,7 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="header-main row">
-          <div className="header__company-name"></div>
+          <a href="/" className="main-name"><div className="header__company-name">Readit</div></a>
           <div className="header__user-input">
             <div className="header__search">
               <IoIosSearch className="icon-search" />

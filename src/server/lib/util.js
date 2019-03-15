@@ -37,7 +37,18 @@ const filterJasonLdKeywords = (jsonLD) => {
   }
 };
 
+const filterTags = (nodes) => {
+  return Object.values(nodes).reduce((tags, node) => {
+    if (node.attribs && node.attribs.content) {
+      tags.push(node.attribs.content);
+    }
+
+    return tags;
+  }, []);
+};
+
 module.exports = {
   trimKeywords,
-  filterJasonLdKeywords
+  filterJasonLdKeywords,
+  filterTags,
 };

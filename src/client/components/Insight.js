@@ -21,17 +21,6 @@ class Insight extends Component {
   }
 
   renderKeywordList() {
-    // const { selectedCategory } = this.state;
-    // let { keywords } = this.props;
-
-    // if (selectedCategory) {
-    //   keywords = Object.values(keywords).filter(keyword => keyword.category === selectedCategory)
-    // }
-
-    // return Object.values(keywords).map(keyword => (
-    //   <li key={keyword.name} className="keyword-list__item">{keyword.name}</li>
-    // ));
-
     return this.props.keywords.map(keyword => (
       <li key={keyword.name} className="keyword-list__item">{keyword.name}</li>
     ));

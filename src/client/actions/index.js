@@ -51,11 +51,9 @@ export const removeModal = () => ({
 });
 
 export const fetchArticlesByCategory = categoryId => async (dispatch) => {
-  let res;
-
   dispatch({ type: LOADING_ARTICLES, payload: true });
 
-  res = await axios.get(`/api/categories/${categoryId}/articles`);
+  const res = await axios.get(`/api/categories/${categoryId}/articles`);
 
   dispatch({ type: FETCH_ARTICLES_BY_CATEGORY, payload: res.data });
 };

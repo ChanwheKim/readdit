@@ -48,4 +48,5 @@ export default Modal;
 Modal.propTypes = {
   message: PropTypes.string,
   onClick: PropTypes.func,
+  onBackgroundClick: PropTypes.func,
 };

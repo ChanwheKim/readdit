@@ -44,7 +44,7 @@ class ArticleItem extends Component {
       <div className="article list">
         <div className="article list__info">
           <div className="article list__info--details">
-            <a href={article.url} target="_blank"><h1>{article.title}</h1></a>
+            <a href={article.url} target="_blank" rel="noopener noreferrer"><h1>{article.title}</h1></a>
             {
               article.description &&
               <span className="description">{article.description}</span>

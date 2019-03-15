@@ -62,7 +62,6 @@ class List extends Component {
 export default List;
 
 List.propTypes = {
-  onUnmount: PropTypes.func,
   onLikeClick: PropTypes.func,
   modal: PropTypes.object,
   onModalClick: PropTypes.func,

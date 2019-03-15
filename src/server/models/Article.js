@@ -14,4 +14,6 @@ const articleSchema = new Schema({
   categoryId: [mongoose.Schema.Types.ObjectId],
 }, { timestamps: true });
 
+articleSchema.index({ 'title': 'text', 'description': 'text' });
+
 module.exports = mongoose.model('articles', articleSchema);

@@ -29,12 +29,23 @@ class BubbleChart extends Component {
     this.mounted = false;
   }
 
-  componentWillReceiveProps() {
+  componentDidMount() {
     if (this.props.data.length > 0) {
       this.minValue = 0.95 * d3.min(this.props.data, item => item.v);
       this.maxValue = 1.05 * d3.max(this.props.data, item => item.v);
 
       this.simulatePositions(this.props.data);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.data.length > 0 && this.state.data.length !== 0) {
+      this.minValue = 0.95 * d3.min(this.props.data, item => item.v);
+      this.maxValue = 1.05 * d3.max(this.props.data, item => item.v);
+
+      if (JSON.stringify(this.props.data) !== JSON.stringify(prevProps.data)) {
+        this.simulatePositions(this.props.data);
+      }
     }
   }
 
@@ -52,8 +63,8 @@ class BubbleChart extends Component {
       .forceSimulation()
       .nodes(data)
       .velocityDecay(0.5)
-      .force('x', d3.forceX().strength(0.03))
-      .force('y', d3.forceY().strength(0.03))
+      .force('x', d3.forceX().strength(0.05))
+      .force('y', d3.forceY().strength(0.05))
       .force(
         'collide',
         d3.forceCollide(d => this.radiusScale(d.v) + 2)

@@ -165,4 +165,5 @@ PostArticleSection.propTypes = {
   modal: PropTypes.object,
   onModalClick: PropTypes.func,
   onUnmount: PropTypes.func,
+  onNotEnoughInfo: PropTypes.func,
 };
