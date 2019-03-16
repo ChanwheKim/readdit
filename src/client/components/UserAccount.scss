@@ -170,3 +170,17 @@ text {
     fill: rgb(3, 168, 124) !important;
   }
 }
+
+.admin-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50rem;
+  height: 5rem;
+  transform: translate(3rem, -5rem);
+}
+
+.list-wrapper__loader .admin {
+  transform: translateX(5rem);
+}

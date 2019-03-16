@@ -6,6 +6,7 @@ const mapStateToProps = state => ({
   categories: state.categories,
   articles: state.articles,
   modal: state.modal,
+  searchedArticles: state.searchedArticles,
 });
 
 export default connect(

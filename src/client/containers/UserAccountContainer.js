@@ -29,11 +29,14 @@ const mapStateToProps = (state) => {
     userPosts: state.userPosts.map(id => state.articles.list[id]),
     categories: state.categories,
     keywords,
+    isLoading: state.articles.isLoading,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onMount: async (id) => {
+    dispatch({ type: LOADING_ARTICLES, payload: true });
+
     const articles = await axios.get(`/api/users/${id}/articles`);
 
     dispatch(receiveUserPosts(articles.data));

@@ -11,6 +11,7 @@ import {
   LOADING_ARTICLES,
   HANDLE_LIKE,
   RECEIVE_USER_POSTS,
+  RECEIVE_POSTS_BY_KEYWORD,
 } from './types';
 
 export const fetchUser = () => async (dispatch) => {
@@ -90,3 +91,20 @@ export const receiveUserPosts = articles => ({
   type: RECEIVE_USER_POSTS,
   payload: articles,
 });
+
+export const handleKeywordSearch = text => async (dispatch) => {
+  const keyword = text.replace(/[^a-zA-Z0-9\u3131-\uD79D]/g, '');
+  let res;
+
+  if (!keyword || keyword.length === 1) {
+    return;
+  }
+
+  try {
+    res = await axios.get(`/api/articles/${keyword}`);
+  } catch (err) {
+    return dispatch(displayModal(err.message));
+  }
+
+  dispatch({ type: RECEIVE_POSTS_BY_KEYWORD, payload: res.data });
+};

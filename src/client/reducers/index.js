@@ -5,6 +5,7 @@ import newArticleReducer from './newArticleReducer';
 import modalReducer from './modalReducer';
 import articlesReducer from './articlesReducer';
 import userPostReducer from './userPostReducer';
+import searchReducer from './searchReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   modal: modalReducer,
   articles: articlesReducer,
   userPosts: userPostReducer,
+  searchedArticles: searchReducer,
 });

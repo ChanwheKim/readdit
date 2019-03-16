@@ -3,6 +3,7 @@ import {
   LOADING_ARTICLES,
   HANDLE_LIKE,
   RECEIVE_USER_POSTS,
+  RECEIVE_POSTS_BY_KEYWORD,
 } from '../actions/types';
 
 const initialState = {
@@ -55,6 +56,22 @@ export default function articlesReducer(state = initialState, action) {
         list: {
           ...state.list,
           [action.payload.article._id]: action.payload.article,
+        },
+      };
+    case RECEIVE_POSTS_BY_KEYWORD:
+      const searchArticles = action.payload.reduce((articles, item) => {
+        if (!Object.keys(state.list).includes(item._id)) {
+          articles[item._id] = item;
+        }
+
+        return articles;
+      }, {});
+
+      return {
+        isLoading: false,
+        list: {
+          ...state.list,
+          ...searchArticles,
         },
       };
     default:

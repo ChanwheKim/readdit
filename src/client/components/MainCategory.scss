@@ -65,5 +65,56 @@
     letter-spacing: .7px;
     color: #ffffff;
     cursor: pointer;
+
+    & a,
+    & a:active,
+    & a:visited {
+      color: #ffffff;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.list-no-article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50rem;
+  padding: 5rem;
+
+  & p {
+    font-size: 1.7rem;
+    font-weight: 300;
+  }
+}
+
+.list-btn-home {
+  color: #28b485;
+  border-bottom: 1px solid #28b485;
+  padding-bottom: 2px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 1.5rem;
+  margin: 0 auto;
+  margin-top: 7rem;
+
+  & span {
+    margin-left: 3px;
+    transition: margin-left .2s;
+  }
+
+  &:hover {
+    color: rgba(0,0,0,.84);
+    border-bottom: 1px solid rgba(0,0,0,.84);
+
+    span {
+        margin-left: 8px;
+    }
   }
 }

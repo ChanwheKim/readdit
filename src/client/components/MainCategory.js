@@ -24,14 +24,14 @@ class MainCategory extends Component {
     const { categories } = this.props;
 
     return categories.map(category => (
-      <Link to="/articles" key={category._id}>
-        <li className="categories__item" data-id={category._id}>{ category.name }</li>
-      </Link>
+      <li className="categories__item" data-id={category._id} key={category._id}>
+        <Link to="/articles">{ category.name }</Link>
+      </li>
     ));
   }
 
   handleCategoryClicked(ev) {
-    const { id } = ev.target.dataset;
+    const { id } = ev.target.closest('.categories__item').dataset;
 
     if (id) {
       this.setState({ curCategoryId: id });
@@ -40,10 +40,10 @@ class MainCategory extends Component {
   }
 
   render() {
-    if (this.props.location.pathname === '/articles') {
-      const { categories, articles } = this.props;
-      const { curCategoryId } = this.state;
+    const { categories, articles, searchedArticles } = this.props;
+    const { curCategoryId } = this.state;
 
+    if (this.props.location.pathname === '/articles') {
       const curCategory = categories.find(category => category._id === curCategoryId);
       const list = {
         ...articles,
@@ -75,6 +75,32 @@ class MainCategory extends Component {
             }
           </ul>
         </Fragment>
+      );
+    }
+
+    if (this.props.location.pathname === '/articles/keywords') {
+      if (searchedArticles.length) {
+        const filteredArticles = searchedArticles.map(id => articles.list[id]);
+        const articleList = {
+          ...articles,
+          list: filteredArticles,
+        };
+
+        return (
+          <List
+            articles={articleList}
+            onLikeClick={this.props.handleLikeClick}
+            modal={this.props.modal}
+            onModalClick={this.props.removeModal}
+          />
+        );
+      }
+
+      return (
+        <div className="list-no-article">
+          <p>There is no articles with the keyword.</p>
+          <a href="/" className="list-btn-home">Home <span>&rarr;</span></a>
+        </div>
       );
     }
 

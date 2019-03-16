@@ -296,4 +296,21 @@ router.get('/users/:user_id/articles', async (req, res, next) => {
   }
 });
 
+router.get('/articles/:keyword', async (req, res, next) => {
+  const keyword = req.params.keyword.replace(/[^a-zA-Z0-9\u3131-\uD79D]/g, '');
+  let result;
+
+  if (keyword) {
+    try {
+      result = await Article.find({ $text: { $search: keyword } });
+    } catch (err) {
+      return res.json({ error: err.message });
+    }
+
+    return res.json(result);
+  }
+
+  return res.json(new WrongEntityError());
+});
+
 module.exports = router;

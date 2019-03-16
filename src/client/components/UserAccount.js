@@ -3,6 +3,7 @@ import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import './UserAccount.scss';
 import PropTypes from 'prop-types';
 import Insight from './Insight';
+import { FaSpinner } from 'react-icons/fa';
 
 class UserAccount extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class UserAccount extends Component {
   }
 
   renderContents() {
-    const { userPosts, categories } = this.props;
+    const { userPosts, categories, isLoading } = this.props;
     const { selectedCategory } = this.state;
     let { keywords } = this.props;
 
@@ -45,6 +46,14 @@ class UserAccount extends Component {
           keywords={keywords}
           onClick={this.handleCategoryClicked}
         />
+      );
+    }
+
+    if (isLoading) {
+      return (
+        <div className="admin-loader">
+            <FaSpinner className="list-wrapper__loader admin" size={40} />
+        </div>
       );
     }
 

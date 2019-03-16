@@ -29,8 +29,13 @@ class Header extends Component {
   }
 
   handleKeyDown(ev) {
-    if (ev.keyCode === 13) {
-      console.log('search keyword');
+    const { keyword } = this.state;
+  
+    if (ev.keyCode === 13 && keyword && keyword.length !== 1) {
+      this.props.handleKeywordSearch(this.state.keyword);
+      this.inputRef.current.value = '';
+      this.setState({ keyword: '' });
+      this.props.history.push('/articles/keywords');
     }
   }
 
@@ -90,4 +95,5 @@ export default Header;
 Header.propTypes = {
   auth: PropTypes.object,
   fetchUser: PropTypes.func,
+  handleKeywordSearch: PropTypes.func,
 };
