@@ -43,7 +43,7 @@
 
   &__input {
     height: 7rem;
-    width: 45rem;
+    width: 50rem;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .15);
     padding: 1rem 2rem;
@@ -65,7 +65,7 @@
       color: coral;
     }
 
-    &:invalid + div {
+    &:invalid + button {
       background-color: rgba(coral, .7);
       color: #ffffff;
     }

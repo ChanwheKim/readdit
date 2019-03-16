@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import './UserAccount.scss';
 import PropTypes from 'prop-types';
-import Insight from './Insight';
 import { FaSpinner } from 'react-icons/fa';
+import Insight from './Insight';
 
 class UserAccount extends Component {
   constructor(props) {
@@ -55,6 +55,10 @@ class UserAccount extends Component {
             <FaSpinner className="list-wrapper__loader admin" size={40} />
         </div>
       );
+    }
+
+    if (!userPosts.length) {
+      return <div className="zero-posts">There is no articles you uploaded.</div>;
     }
 
     return userPosts.map(article => (

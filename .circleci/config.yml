@@ -20,7 +20,22 @@ jobs:
           # NPM Dependencies 설치
           name: Install NPM Dependencies
           command: |
-            sudo npm install --unsafe-perm=true
+            sudo npm install --unsafe-perm=true -g
+      - run:
+          # NPM Dependencies 설치
+          name: Install NPM REQUEST
+          command: |
+            sudo npm install request-promise-native --unsafe-perm=true
+      - run:
+          # NPM Dependencies 설치
+          name: Install NPM Webpack
+          command: |
+            sudo npm i -g webpack
+      - run:
+          # NPM Dependencies 설치
+          name: Install NPM Webpack Cli
+          command: |
+            sudo npm install webpack-cli
       - run:
           # NPM Dependencies 설치
           name: Build my app

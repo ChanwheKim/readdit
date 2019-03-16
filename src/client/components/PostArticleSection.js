@@ -120,7 +120,6 @@ class PostArticleSection extends Component {
           <button
             className="new-article__btn-submit"
             onClick={this.handleBtnClick}
-            disabled={!(url) || !(categoryIdSelected)}
             type="button"
           >
             Submit

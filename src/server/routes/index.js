@@ -109,7 +109,7 @@ router.post('/articles/new', authenticate, async (req, res, next) => {
     const tags = filterTags($('meta[property="article:tag"]'));
 
     keywords = keywords.concat(tags);
-    
+
     description = _.result(metaDiscription.attribs, 'content', '')
       || (jsonLD && jsonLD.description)
       || '';

@@ -38,6 +38,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   },
   "devDependencies": {

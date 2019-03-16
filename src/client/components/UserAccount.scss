@@ -19,6 +19,13 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 1.5rem;
     margin-left: 4rem;
+    transition: all .2s;
+    padding-left: 1rem;
+
+    &:hover {
+      box-shadow: 2px 2px 10px 0 rgba(46, 61, 73, 0.1);
+      transform: scale(1.005);
+    }
 
     &--title {
       font-size: 2rem;
@@ -55,7 +62,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20rem;
+    width: 25rem;
     height: 57rem;
     top: 13rem;
     left: 0;
@@ -115,7 +122,7 @@ a {
     &__list-wrapper {
       display: flex;
       flex-direction: column;
-      height: 27rem;
+      height: 32rem;
       transform: translatey(-5rem);
 
       & h1 {
@@ -123,7 +130,7 @@ a {
         font-size: 2rem;
         text-align: left;
         color: rgba(0, 0, 0, 0.84);
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
         font-weight: 300;
         margin-left: .5rem;
       }
@@ -139,11 +146,12 @@ a {
     border: 1px solid rgba(0,0,0,.1);
 
     &__item {
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
+      margin-top: 1.3rem;
+      margin-bottom: 1.3rem;
       font-size: 1.5rem;
       display: block;
       padding-left: 2rem;
+      color: rgba(0, 0, 0, 0.84);
     }
   }
 
@@ -183,4 +191,10 @@ text {
 
 .list-wrapper__loader .admin {
   transform: translateX(5rem);
+}
+
+.zero-posts {
+  font-size: 2rem;
+  font-weight: 300;
+  transform: translate(5rem, -5rem);
 }

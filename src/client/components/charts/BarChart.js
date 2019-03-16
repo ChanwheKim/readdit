@@ -14,7 +14,7 @@ class BarChart extends Component {
 
   render() {
     const { categories, onClick } = this.props;
-    const margins = { top: 50, right: 20, bottom: 100, left: 60 };
+    const margins = { top: 30, right: 20, bottom: 100, left: 60 };
     const svgDimensions = { width: 500, height: 400 };
 
     const maxValue = Math.max(...categories.map(d => d.count));

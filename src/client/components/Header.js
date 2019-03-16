@@ -49,7 +49,7 @@ class Header extends Component {
         return null;
       case false:
         return (
-          <a href="/auth/google" className="sign-in">Sign in</a>
+          <a href="/auth/google" className="vabt-cta-btn">Sign in</a>
         );
       default:
         return (
@@ -93,7 +93,6 @@ class Header extends Component {
 export default Header;
 
 Header.propTypes = {
-  auth: PropTypes.object,
   fetchUser: PropTypes.func,
   handleKeywordSearch: PropTypes.func,
 };
