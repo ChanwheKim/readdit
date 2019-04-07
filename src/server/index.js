@@ -23,6 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+
 app.use('/api', index);
 
 app.use(express.static('dist'));
