@@ -19,6 +19,14 @@ app.use(cookieSession({
   keys: [keys.cookieKey],
 }));
 
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production' && (!req.secure) && (req.get('X-Forwarded-Proto') !== 'https')) {
+    res.redirect('https://' + req.get('Host') + req.url);
+  } else {
+    next();
+  }
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
