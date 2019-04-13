@@ -11,6 +11,7 @@
 - Challenge
 - Things to do
 - Version Control
+- Other tools
 - Deployment
 - Sincere Thanks
 
@@ -69,17 +70,19 @@ npm test
 - Server unit test.
 - Intergration test.
 - 전반적인 디자인 개선.
-- 앱 확장 및 유지 보수 용이를 위한 Code Refactoring
-
-### Other tools
-- Trello를 이용한 task 세분화 및 스케줄 관리.
+- 앱 확장 및 유지 보수 용이를 위한 Code Refactoring.
 
 ### Version Control
 - Version Control을 위해 git을 사용.
 - 개발 시 별도의 브랜치 생성 후, 각 기능 구현 후 master 브랜치에 병합함.
 
+### Other tools
+- Trello를 이용한 task 세분화 및 스케줄 관리.
+- Lucidchart를 이용한 schema design.
+- OmniGraffle을 이용한 Mockup design.
+
 ### Deployment
-- AWS Elastic Beanstalk & Circle CI for Continuous Intergration
+- AWS Elastic Beanstalk & Circle CI for Continuous Intergration.
 
 ### Sincere Thanks
 [Ken Huh](https://github.com/Ken123777) / Vanilla Coding
