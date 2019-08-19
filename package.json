@@ -31,6 +31,7 @@
     "mongoose": "^5.4.17",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.5.2",
     "react-icons": "^3.4.0",
