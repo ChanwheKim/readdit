@@ -4,7 +4,7 @@ import './Header.scss';
 // import PropTypes from 'prop-types';
 import HeaderAdmin from './HeaderAdmin';
 
-export default function Header ({ auth, fetchUser, handleKeywordSearch, history }) {
+export default function Header ({ auth, fetchUser, handleKeywordSearch, history }): React.FC {
   const [keyword, setKeyword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const inputRef = useRef();
