@@ -11,7 +11,19 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    rules: [{
+    rules: [
+      {
+        test: /\.(t|j)sx?$/,
+        use: { loader: 'ts-loader' },
+        exclude: /node_modules/
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "source-map-loader"
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -41,7 +53,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ["*", ".ts", ".tsx", ".js", ".jsx"]
+  },
+  externals: {
+    "mongoose": 'commonjs mongoose'
   },
   devServer: {
     port: 3000,
@@ -50,6 +65,7 @@ module.exports = {
       '/api': 'http://localhost:8080'
     }
   },
+  devtool: "source-map",
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
