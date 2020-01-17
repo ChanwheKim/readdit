@@ -1,34 +1,40 @@
-import * as React from 'react';
-import './List.scss';
-import { FaSpinner } from 'react-icons/fa';
+import * as React from "react";
+import "./List.scss";
 // import * as PropTypes from 'prop-types';
-import ArticleItem from './ArticleItem';
-import Modal from './Modal';
+
+import ArticleItem from "./ArticleItem";
+import Modal from "./Modal";
+import Loading from "./Common/Loading";
 
 interface Article {
-  _id: string,
-  title: string,
-  url: string,
+  _id: string;
+  title: string;
+  url: string;
 }
 
 interface Articles {
-  isLoading: boolean,
-  list: Article[],
+  isLoading: boolean;
+  list: Article[];
 }
 
 interface ListProps {
-  articles: Articles,
-  modal: ModalProp,
-  onLikeClick: () => void,
-  onModalClick: () => void,
+  articles: Articles;
+  modal: ModalProp;
+  onLikeClick: () => void;
+  onModalClick: () => void;
 }
 
 interface ModalProp {
-  showModal: false,
-  message: string,
+  showModal: false;
+  message: string;
 }
 
-export default function List({ articles, modal, onLikeClick, onModalClick }: ListProps) {
+export default function List({
+  articles,
+  modal,
+  onLikeClick,
+  onModalClick
+}: ListProps) {
   const { isLoading, list } = articles;
 
   const renderArticleItem = () => {
@@ -41,14 +47,9 @@ export default function List({ articles, modal, onLikeClick, onModalClick }: Lis
     ));
   };
 
-
   if (isLoading) {
     return (
-      <div className="list-wrapper row">
-        <div className="loader-background">
-          <FaSpinner className="list-wrapper__loader" size={40} />
-        </div>
-      </div>
+      <Loading />
     );
   }
 
@@ -62,13 +63,10 @@ export default function List({ articles, modal, onLikeClick, onModalClick }: Lis
 
   return (
     <div className="list-wrapper row">
-      {
-        renderArticleItem()
-      }
-      {
-        modal.showModal &&
+      {renderArticleItem()}
+      {modal.showModal && (
         <Modal message={modal.message} onClick={onModalClick} />
-      }
+      )}
     </div>
   );
 }
