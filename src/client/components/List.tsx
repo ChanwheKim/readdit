@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import ArticleItem from "./ArticleItem";
+import ArticleList from "./ArticleList";
 import Modal from "./Modal";
 import Loading from "./Common/Loading";
 
@@ -37,7 +37,7 @@ export default function List({
 
   const renderArticleItem = () => {
     return list.map(article => (
-      <ArticleItem
+      <ArticleList
         article={article}
         onLikeClick={onLikeClick}
         key={article._id}
