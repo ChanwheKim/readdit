@@ -1,5 +1,8 @@
 import * as React from "react";
-import { FaHashtag, FaSeedling } from "react-icons/fa";
+import styled from "@emotion/styled";
+import { FaSeedling } from "react-icons/fa";
+
+import Keyword from "./Common/Keyword";
 import "./ArticleList.scss";
 
 const DEFAULT_IMAGE =
@@ -19,12 +22,8 @@ export default function ArticleList({ article, onLikeClick }) {
   function renderKeywords() {
     return article.keywords.map(keyword => {
       const key = keyword + Math.random();
-
       return (
-        <li className="keyword" key={key}>
-          <FaHashtag size={10} className="icon-keywords" />
-          {keyword}
-        </li>
+        <Keyword key={key} keyword={keyword} />
       );
     });
   }
