@@ -1,6 +1,4 @@
 import * as React from "react";
-import "./List.scss";
-// import * as PropTypes from 'prop-types';
 
 import ArticleItem from "./ArticleItem";
 import Modal from "./Modal";
