@@ -17,7 +17,7 @@ const Icon = styled(FaHashtag)`
   font-weight: 300;
 `;
 
-export default function Keyword({ keyword }) {
+export default function Keyword({ keyword }: { keyword: string }) {
   return (
     <Self>
       <Icon size={10} />
