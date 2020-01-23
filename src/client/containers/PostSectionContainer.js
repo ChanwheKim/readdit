@@ -3,7 +3,7 @@ import axios from 'axios';
 import PostArticleSection from '../components/PostArticleSection';
 import {
   didPostRequest,
-  receiveNewArticle,
+  getNewArticle,
   displayModal,
   removeModal,
   resetNewArticle,
@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
       return dispatch(displayModal(response.data.message));
     }
 
-    dispatch(receiveNewArticle(response.data));
+    dispatch(getNewArticle(response.data));
     dispatch(fetchCategories());
   },
 
