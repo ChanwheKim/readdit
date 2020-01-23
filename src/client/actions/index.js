@@ -1,29 +1,22 @@
 import axios from 'axios';
 import {
   FETCH_USER,
-  FETCH_CATEGORIES,
   IS_POSTING,
   RECEIVE_NEW_ARTICLE,
   RESET_NEW_ARTICLE,
   DISPLAY_MODAL,
   REMOVE_MODAL,
-  FETCH_ARTICLES_BY_CATEGORY,
-  LOADING_ARTICLES,
   HANDLE_LIKE,
   RECEIVE_USER_POSTS,
   RECEIVE_POSTS_BY_KEYWORD,
 } from './types';
 
+export * from "./categories";
+
 export const fetchUser = () => async (dispatch) => {
   const res = await axios.get('/api/current_user');
 
   dispatch({ type: FETCH_USER, payload: res.data });
-};
-
-export const fetchCategories = () => async (dispatch) => {
-  const res = await axios.get('/api/categories');
-
-  dispatch({ type: FETCH_CATEGORIES, payload: res.data });
 };
 
 export const didPostRequest = () => ({
@@ -50,14 +43,6 @@ export const removeModal = () => ({
   type: REMOVE_MODAL,
   payload: '',
 });
-
-export const fetchArticlesByCategory = categoryId => async (dispatch) => {
-  dispatch({ type: LOADING_ARTICLES, payload: true });
-
-  const res = await axios.get(`/api/categories/${categoryId}/articles`);
-
-  dispatch({ type: FETCH_ARTICLES_BY_CATEGORY, payload: res.data });
-};
 
 export const handleLikeClick = article => async (dispatch, getState) => {
   const user = getState().auth;
