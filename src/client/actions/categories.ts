@@ -11,6 +11,5 @@ export interface Categories {
 
 export const fetchCategories = () => async (dispatch: Dispatch) => {
   const res = await axios.get<Categories>('/api/categories');
-
   dispatch({ type: FETCH_CATEGORIES, payload: res.data });
 };
