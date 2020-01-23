@@ -11,6 +11,7 @@ import {
   RECEIVE_POSTS_BY_KEYWORD,
 } from './types';
 
+export * from "./articles";
 export * from "./categories";
 
 export const fetchUser = () => async (dispatch) => {
