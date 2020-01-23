@@ -16,16 +16,8 @@ export enum ActionTypes {
 
 export const FETCH_USER = "FETCH_USER";
 
-export const IS_POSTING = "IS_POSTING";
-export const RECEIVE_NEW_ARTICLE = "RECEIVE_NEW_ARTICLE";
-export const RESET_NEW_ARTICLE = "RESET_NEW_ARTICLE";
-
-export const DISPLAY_MODAL = "DISPLAY_MODAL";
-export const REMOVE_MODAL = "REMOVE_MODAL";
-
 export const LOADING_ARTICLES = "LOADING_ARTICLES";
 export const FETCH_ARTICLES_BY_CATEGORY = "FETCH_ARTICLES_BY_CATEGORY";
-export const RESET_ARTICLES_STATE = "RESET_ARTICLES_STATE";
 
 export const HANDLE_LIKE = "HANDLE_LIKE";
 

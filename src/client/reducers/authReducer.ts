@@ -1,10 +1,10 @@
-import { FETCH_USER, HANDLE_LIKE } from '../actions/types';
+import { ActionTypes } from '../actions/types';
 
 export default function authReducer(state = null, action) {
   switch (action.type) {
-    case FETCH_USER:
+    case ActionTypes.FETCH_USER:
       return action.payload || false;
-    case HANDLE_LIKE:
+    case ActionTypes.HANDLE_LIKE:
       return {
         ...state,
         like: action.payload.like,

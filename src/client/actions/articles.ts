@@ -2,7 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { ActionTypes } from "./types";
 
-interface Article {
+export interface Article {
   keywords: string[];
   like: string[];
   categoryId: string[];

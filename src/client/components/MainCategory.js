@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import List from './List';
-import './MainCategory.scss';
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import List from "./List";
+import "./MainCategory.scss";
 
 class MainCategory extends Component {
   constructor() {
     super();
 
     this.state = {
-      curCategoryId: '',
+      curCategoryId: ""
     };
 
     this.renderCategories = this.renderCategories.bind(this);
@@ -24,14 +24,18 @@ class MainCategory extends Component {
     const { categories } = this.props;
 
     return categories.map(category => (
-      <li className="categories__item" data-id={category._id} key={category._id}>
-        <Link to="/articles">{ category.name }</Link>
+      <li
+        className="categories__item"
+        data-id={category._id}
+        key={category._id}
+      >
+        <Link to="/articles">{category.name}</Link>
       </li>
     ));
   }
 
   handleCategoryClicked(ev) {
-    const { id } = ev.target.closest('.categories__item').dataset;
+    const { id } = ev.target.closest(".categories__item").dataset;
 
     if (id) {
       this.setState({ curCategoryId: id });
@@ -43,53 +47,57 @@ class MainCategory extends Component {
     const { categories, articles, searchedArticles } = this.props;
     const { curCategoryId } = this.state;
 
-    if (this.props.location.pathname === '/articles') {
-      const curCategory = categories.find(category => category._id === curCategoryId);
+    if (this.props.location.pathname === "/articles") {
+      const curCategory = categories.find(
+        category => category._id === curCategoryId
+      );
       const list = {
         ...articles,
-        list: curCategory.articleIds.map(id => articles.list[id]),
+        list: curCategory.articleIds.map(id => articles.list[id])
       };
 
       return (
         <List
           articles={list}
-          onLikeClick={this.props.handleLikeClick}
+          onLikeClick={this.props.handleClickLike}
           modal={this.props.modal}
           onModalClick={this.props.removeModal}
         />
       );
     }
 
-    if (this.props.location.pathname === '/') {
+    if (this.props.location.pathname === "/") {
       return (
         <Fragment>
           <div className="hero row">
             <div className="hero__content">
-              <h1 className="hero__content--title-1">Welcome to Readdit, where words matter.</h1>
-              <h2 className="hero__content--title-2">We will organize the world's contents.</h2>
+              <h1 className="hero__content--title-1">
+                Welcome to Readdit, where words matter.
+              </h1>
+              <h2 className="hero__content--title-2">
+                We will organize the world's contents.
+              </h2>
             </div>
           </div>
           <ul className="categories row" onClick={this.handleCategoryClicked}>
-            {
-              this.renderCategories()
-            }
+            {this.renderCategories()}
           </ul>
         </Fragment>
       );
     }
 
-    if (this.props.location.pathname === '/articles/keywords') {
+    if (this.props.location.pathname === "/articles/keywords") {
       if (searchedArticles.length) {
         const filteredArticles = searchedArticles.map(id => articles.list[id]);
         const articleList = {
           ...articles,
-          list: filteredArticles,
+          list: filteredArticles
         };
 
         return (
           <List
             articles={articleList}
-            onLikeClick={this.props.handleLikeClick}
+            onLikeClick={this.props.handleClickLike}
             modal={this.props.modal}
             onModalClick={this.props.removeModal}
           />
@@ -99,7 +107,9 @@ class MainCategory extends Component {
       return (
         <div className="list-no-article">
           <p>There is no articles with the keyword.</p>
-          <a href="/" className="list-btn-home">Home <span>&rarr;</span></a>
+          <a href="/" className="list-btn-home">
+            Home <span>&rarr;</span>
+          </a>
         </div>
       );
     }
@@ -115,7 +125,7 @@ MainCategory.propTypes = {
   fetchCategories: PropTypes.func,
   categories: PropTypes.array,
   fetchArticlesByCategory: PropTypes.func,
-  handleLikeClick: PropTypes.func,
+  handleClickLike: PropTypes.func,
   modal: PropTypes.object,
-  removeModal: PropTypes.func,
+  removeModal: PropTypes.func
 };
