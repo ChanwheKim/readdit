@@ -1,11 +1,21 @@
-import { DISPLAY_MODAL, REMOVE_MODAL } from "./types";
+import { ActionTypes } from "./types";
 
-export const displayModal = message => ({
-  type: DISPLAY_MODAL,
-  payload: message,
+interface DisplayModalAction {
+  type: ActionTypes.DISPLAY_MODAL;
+  payload: string;
+}
+
+interface RemoveModalAction {
+  type: ActionTypes.REMOVE_MODAL;
+  payload: "";
+}
+
+export const displayModal = (message: string): DisplayModalAction => ({
+  type: ActionTypes.DISPLAY_MODAL,
+  payload: message
 });
 
-export const removeModal = () => ({
-  type: REMOVE_MODAL,
-  payload: '',
+export const removeModal = (): RemoveModalAction => ({
+  type: ActionTypes.REMOVE_MODAL,
+  payload: ""
 });

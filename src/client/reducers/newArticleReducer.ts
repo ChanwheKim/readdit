@@ -1,36 +1,31 @@
-import {
-  IS_POSTING,
-  RECEIVE_NEW_ARTICLE,
-  REMOVE_MODAL,
-  RESET_NEW_ARTICLE,
-} from '../actions/types';
+import { ActionTypes } from "../actions/types";
 
 const initialState = {
   isPosting: false,
-  article: {},
+  article: {}
 };
 
 export default function newArticleReducer(state = initialState, action) {
   switch (action.type) {
-    case IS_POSTING:
+    case ActionTypes.IS_POSTING:
       return {
         article: {},
-        isPosting: true,
+        isPosting: true
       };
-    case RECEIVE_NEW_ARTICLE:
+    case ActionTypes.GET_NEW_ARTICLE:
       return {
         isPosting: false,
-        article: action.payload,
+        article: action.payload
       };
-    case REMOVE_MODAL:
+    case ActionTypes.REMOVE_MODAL:
       return {
         ...state,
-        isPosting: false,
+        isPosting: false
       };
-    case RESET_NEW_ARTICLE:
+    case ActionTypes.RESET_NEW_ARTICLE:
       return {
         isPosting: false,
-        article: action.payload,
+        article: action.payload
       };
     default:
       return state;

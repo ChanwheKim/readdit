@@ -1,4 +1,4 @@
-import { DISPLAY_MODAL, REMOVE_MODAL } from '../actions/types';
+import { ActionTypes } from '../actions/types';
 
 const initialState = {
   showModal: false,
@@ -7,12 +7,12 @@ const initialState = {
 
 export default function modalReducer(state = initialState, action) {
   switch (action.type) {
-    case DISPLAY_MODAL:
+    case ActionTypes.DISPLAY_MODAL:
       return {
         showModal: true,
         message: action.payload,
       };
-    case REMOVE_MODAL:
+    case ActionTypes.REMOVE_MODAL:
       return {
         showModal: false,
         message: action.payload,

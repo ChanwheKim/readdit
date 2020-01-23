@@ -1,15 +1,23 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { FETCH_CATEGORIES } from "./types";
+import { ActionTypes } from "./types";
 
-export interface Categories {
-  articleIds: string[],
-  _id: string,
-  name: string,
-  count: number,
+export interface Category {
+  articleIds: string[];
+  _id: string;
+  name: string;
+  count: number;
+}
+
+interface FetchCategoriesAction {
+  type: ActionTypes.FETCH_CATEGORIES;
+  payload: Category[];
 }
 
 export const fetchCategories = () => async (dispatch: Dispatch) => {
-  const res = await axios.get<Categories>('/api/categories');
-  dispatch({ type: FETCH_CATEGORIES, payload: res.data });
+  const res = await axios.get<Category[]>("/api/categories");
+  dispatch<FetchCategoriesAction>({
+    type: ActionTypes.FETCH_CATEGORIES,
+    payload: res.data
+  });
 };
