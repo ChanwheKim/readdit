@@ -17,10 +17,12 @@ const Self = styled.div`
   }
 `;
 
-const Footer: React.FunctionComponent = () => (
-  <Self>
-    <p>© 2019 Readdit - All Rights Reserved</p>
-  </Self>
-);
+function Footer(): JSX.Element {
+  return (
+    <Self>
+      <p>© 2019 Readdit - All Rights Reserved</p>
+    </Self>
+    );
+}
 
 export default Footer;
