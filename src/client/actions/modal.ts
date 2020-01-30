@@ -1,6 +1,6 @@
 import { ActionTypes } from "./types";
 
-interface DisplayModalAction {
+export interface DisplayModalAction {
   type: ActionTypes.DISPLAY_MODAL;
   payload: string;
 }

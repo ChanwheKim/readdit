@@ -2,8 +2,8 @@ import axios from "axios";
 import { Dispatch } from "redux";
 
 import { Article } from "./articles";
+import { displayModal, DisplayModalAction } from "./modal";
 import { ActionTypes } from "./types";
-import { displayModal } from "./modal";
 
 interface ClickLikeAction {
   type: ActionTypes.HANDLE_LIKE;
@@ -48,6 +48,7 @@ interface KeywordSearchAction {
   type: ActionTypes.RECEIVE_POSTS_BY_KEYWORD;
   payload: SearchedItem[];
 }
+
 export const didPostRequest = () => ({
   type: ActionTypes.IS_POSTING,
   payload: true
@@ -80,7 +81,7 @@ export const handleClickLike = article => async (dispatch: Dispatch, getState) =
   const user = getState().auth;
 
   if (!user) {
-    return dispatch(displayModal("Please sign in first."));
+    return dispatch<DisplayModalAction>(displayModal("Please sign in first."));
   }
 
   const likedBefore = user.like.some(id => {
@@ -98,7 +99,7 @@ export const handleClickLike = article => async (dispatch: Dispatch, getState) =
       url: `/api/users/${user._id}/articles/${article._id}/like`
     });
   } catch (err) {
-    return dispatch(displayModal(err.message));
+    return dispatch<DisplayModalAction>(displayModal(err.message));
   }
 
   dispatch<ClickLikeAction>({ type: ActionTypes.HANDLE_LIKE, payload: res.data });
