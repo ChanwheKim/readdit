@@ -1,6 +1,9 @@
 const express = require('express');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const ssr = require('./ssr');
 const keys = require('./config/keys');
 const index = require('./routes/index');
 const { NotFoundError } = require('./lib/error');
@@ -35,6 +38,8 @@ require('./routes/authRoutes')(app);
 app.use('/api', index);
 
 app.use(express.static('dist'));
+
+app.use('/ssr', ssr);
 
 app.use((req, res, next) => {
   next(new NotFoundError());
