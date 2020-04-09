@@ -4,7 +4,7 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { FaSpinner } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import Selection from './Selection';
-import ArticleList from './ArticleItem';
+import ArticleList from './ArticleList';
 import Modal from './Modal';
 
 class PostArticleSection extends Component {
